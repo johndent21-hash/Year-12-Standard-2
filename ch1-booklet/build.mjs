@@ -34,12 +34,12 @@ const page = await browser.newPage({ viewport: { width: 794, height: 1123 } });
 await page.goto(pathToFileURL(htmlPath).href, { waitUntil: 'networkidle' });
 await page.evaluate(() => document.fonts.ready);
 
-// Overflow check: no content may sit lower than 2 mm above the footer.
+// Overflow check: content must stay about 5 mm clear of the footer (18 mm from the page bottom).
 const problems = await page.evaluate(() => {
   const mm = 96 / 25.4;
   return [...document.querySelectorAll('.page')].flatMap((pg, i) => {
     if (pg.classList.contains('cover')) return [];
-    const limit = pg.getBoundingClientRect().bottom - 17 * mm + 2 * mm;
+    const limit = pg.getBoundingClientRect().bottom - 19 * mm + 1 * mm;
     let worst = 0, who = '';
     pg.querySelectorAll('*').forEach((el) => {
       if (el.closest('.foot')) return;

@@ -39,7 +39,7 @@ const bucketsSvg = `
   </svg>`;
 
 const eqvSvg = `
-  <svg width="100mm" viewBox="0 0 300 86" font-family="Pagella">
+  <svg width="88mm" viewBox="0 0 300 86" font-family="Pagella">
     <defs>
       <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#3f7cc0"/></marker>
       <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#7a1f4e"/></marker>
@@ -112,7 +112,7 @@ const about = {
       ${box('Contents', `<table class="contents">${contentsRows}</table>`, '')}
     </div>
   </div>
-  <div class="pale" style="margin-top:4mm">
+  <div class="pale" style="margin-top:3.5mm">
     <div class="caps">Working on your own?</div>
     <ol class="steps-list" style="margin:0; columns:2; column-gap:8mm">
       <li>Read the key idea and look at the picture.</li>
@@ -125,15 +125,14 @@ const about = {
     <div class="outcomes">
       <div class="code">MST-12-S2-05</div><div>solves practical problems involving ratios and rates</div>
       <div class="code">MAO-WM-01</div><div>develops understanding and fluency in mathematics through exploring and connecting mathematical concepts, choosing and applying mathematical techniques to solve problems, and communicating their thinking and reasoning coherently and clearly</div>
-    </div>`, 'margin-top:4mm')}
-  ${box('Formulas you’ll use <small>(most are on the HSC reference sheet)</small>', `
-    <div class="formulas" style="grid-template-columns: 1.15fr .85fr 1.1fr; column-gap: 5mm;">
+    </div>`, 'margin-top:3.5mm')}
+  ${box('Formulas you’ll use <small>(some are on the HSC reference sheet)</small>', `
+    <div class="formulas" style="grid-template-columns: 1.05fr .7fr 1.25fr; column-gap: 5mm;">
       <div>Trapezoidal rule: &nbsp;<span class="var">A</span> ≈ ${frac('<span class="var">h</span>', '2')}(<span class="var">d<sub>f</sub></span> + <span class="var">d<sub>l</sub></span>)</div>
       <div>Speed: &nbsp;<span class="var">S</span> = ${frac('<span class="var">D</span>', '<span class="var">T</span>')}</div>
-      <div>Fuel used = ${frac('distance', '100')} × rate</div>
-      <div>Volume of a prism: &nbsp;<span class="var">V</span> = <span class="var">Ah</span></div>
-      <div>1 m<sup>3</sup> = 1000 L</div>
-      <div>Energy: &nbsp;kWh = kW × hours</div>
+      <div>Volume: &nbsp;<span class="var">V</span> = <span class="var">Ah</span>, &nbsp;1 m<sup>3</sup> = 1000 L</div>
+      <div style="grid-column: span 2">Fuel used (L) = ${frac('distance (km)', '100')} × rate (L/100&nbsp;km)</div>
+      <div>Energy (kWh) = power (kW) × time (h)</div>
     </div>`, 'margin-top:4mm')}
   <div class="grid2" style="margin-top:4.5mm">
     <div>
@@ -150,22 +149,22 @@ const about = {
 // ---------------------------------------------------------------- key ideas summary
 const kiRows = [
   [1, 'Ratio', `Compares amounts of the <b>same kind</b>, in a set order. Multiply or divide every part by the same number to get an <b>equivalent ratio</b>.`, `${r('5:2')} is not the same as ${r('2:5')}<br>${r('5:2')} = ${r('10:4')} = ${r('15:6')}`],
-  [2, 'Capture–recapture', `Estimates the size of an animal population. Tag some animals, release them, then catch a second sample.`, `<span class="nw" style="font-size:8.6pt">${frac('tagged in 2nd sample', 'size of 2nd sample')} = ${frac('number tagged', 'population')}</span>`],
-  [3, 'Dividing a quantity in a ratio', `<b>1</b> Turn the ratio into two fractions.<br><b>2</b> Multiply the quantity by each fraction.`, `$40 in the ratio ${r('2:3')}:<br>${frac('2', '5')} × $40 = $16, &nbsp;${frac('3', '5')} × $40 = $24`],
-  [4, 'Scale drawings', `Scale = drawing length : actual length. A scale can have units (1 cm to 1 m) or no units (${r('1:100')}).`, `${r('1:100')}: 3 cm on the plan<br>= 3 × 100 = 300 cm = 3 m`],
+  [2, 'Capture–recapture', `Estimates the size of an animal population. Tag some animals, release them, then catch a second sample.`, `<span class="nw" style="font-size:8.6pt">${frac('tagged in 2nd sample', 'size of 2nd sample')} = ${frac('tagged at first', 'population')}</span>`],
+  [3, 'Dividing a quantity in a ratio', `<b>1</b> Add the parts (2 + 3 = 5).<br><b>2</b> Write each part over the total.<br><b>3</b> Multiply the quantity by each fraction.`, `Share $40 in the ratio ${r('2:3')}.<br>${frac('2', '5')} × $40 = $16, &nbsp;${frac('3', '5')} × $40 = $24`],
+  [4, 'Scale drawings', `Scale = drawing length : actual length. A scale can have units (1 cm to 1 m) or no units (${r('1:100')}).`, `Scale ${r('1:100')}. 3 cm on the plan<br>→ real length = 3 × 100 = 300 cm = 3 m`],
   [5, 'Plans and elevations', `A <b>plan</b> is the view from the top. An <b>elevation</b> is the view from one side, such as the front or the side.`, `plan = bird’s-eye view<br>front elevation = view from the front`],
-  [6, 'Perimeter and area of land', `<b>Perimeter</b>: measure each side on the photo and multiply by the scale. <b>Area</b>: count grid squares to estimate, or use a formula. For one curved side, use the trapezoidal rule.`, `<span class="var">A</span> ≈ ${frac('<span class="var">h</span>', '2')}(<span class="var">d<sub>f</sub></span> + <span class="var">d<sub>l</sub></span>)`],
-  [7, 'Volume of water', `Volume = area of the surface × depth. For rain, change millimetres to metres first.`, `<span class="var">V</span> = <span class="var">Ah</span>, &nbsp;1 m<sup>3</sup> = 1000 L<br>18 mm = 0.018 m`],
-  [8, 'Rates', `Compares two amounts with <b>different units</b>.`, `km/h, &nbsp;$/kg, &nbsp;L/100 km, &nbsp;$/hour`],
+  [6, 'Perimeter and area of land', `<b>Perimeter</b>: measure each side on the photo and multiply by the scale. <b>Area</b>: count grid squares to estimate, or use a formula. For one curved side, use the trapezoidal rule.`, `<span class="var">A</span> ≈ ${frac('<span class="var">h</span>', '2')}(<span class="var">d<sub>f</sub></span> + <span class="var">d<sub>l</sub></span>)<br><span style="font-size:8.6pt"><i>h</i> = distance between the two measurements, <i>d<sub>f</sub></i> = first, <i>d<sub>l</sub></i> = last</span>`],
+  [7, 'Volume of water', `If the depth is the same everywhere, volume = area of the surface × depth. For rain, change millimetres to metres first.`, `<span class="var">V</span> = <span class="var">Ah</span> (<span class="var">h</span> = depth), &nbsp;1 m<sup>3</sup> = 1000 L<br>18 mm = 0.018 m`],
+  [8, 'Rates', `Compares two amounts with <b>different units</b>.`, `km/h, &nbsp;$/kg, &nbsp;L/100&nbsp;km, &nbsp;$/hour<br>25 mL/min = 25 × 60 mL/h<br>= 1500 mL/h = 1.5 L/h`],
   [9, 'Unitary method', `Divide to find the amount for <b>1</b>. Multiply to find the amount you need. For the best buy, compare prices for the same amount.`, `3 kg costs $12<br>1 kg: $12 ÷ 3 = $4 &nbsp;→&nbsp; 5 kg: 5 × $4 = $20`],
   [10, 'Speed', `Speed is a rate. On a distance–time graph, a steeper line is faster and a flat line means stopped.`, `<span class="var">S</span> = ${frac('<span class="var">D</span>', '<span class="var">T</span>')}, &nbsp;<span class="var">D</span> = <span class="var">S</span> × <span class="var">T</span>`],
-  [11, 'Energy', `Energy (kWh) = power (kW) × time (hours). Running cost = energy × price per kWh.`, `2 kW for 3 h = 6 kWh<br>6 × $0.30 = $1.80`],
-  [12, 'Fuel consumption', `A rate given in litres per 100 km (L/100 km) or km per litre.`, `Fuel used = ${frac('distance', '100')} × rate`],
+  [11, 'Energy', `Energy (kWh) = power (kW) × time (hours). Running cost = energy × price per kWh.`, `1 kW = 1000 W, so 600 W = 0.6 kW<br>2 kW for 3 h = 6 kWh<br>at $0.30 per kWh: 6 × $0.30 = $1.80`],
+  [12, 'Fuel consumption', `A rate given in litres per 100&nbsp;km (L/100&nbsp;km) or km per litre.`, `Fuel used (L) = ${frac('distance (km)', '100')} × rate<br>Rate = ${frac('litres', 'km')} × 100<br><span class="nw">30 L for 400 km → 7.5 L/100&nbsp;km</span>`],
 ];
 const keyIdeas = {
   html: `
   ${shortBanner('Key ideas <small>Chapter 1 at a glance</small>')}
-  <p style="margin-bottom:2.5mm">This page is a simplified version of the textbook’s <i>Key ideas and chapter summary</i>. Each key idea has its own lesson. Come back to this page when you’re revising.</p>
+  <p style="margin-bottom:2mm">A simplified version of the textbook’s <i>Key ideas and chapter summary</i>. Each key idea has its own lesson.</p>
   <table class="ki">
     <tr><td></td><td></td><td></td><td class="x" style="padding-top:1.2mm;padding-bottom:1.2mm;font:400 7.5pt/1 Poppins;color:#7a1f4e;letter-spacing:.05em">EXAMPLE</td></tr>
     ${kiRows.map(([n, k, e, x]) => `<tr><td class="n">${n}</td><td class="k">${k}</td><td class="e">${e}</td><td class="x">${x}</td></tr>`).join('')}
@@ -190,7 +189,7 @@ const L1a = {
     </div>`)}
 
   <div class="h2">Equivalent ratios</div>
-  <div class="grid2" style="grid-template-columns: 1fr 104mm; column-gap: 4mm; align-items:center">
+  <div class="grid2" style="grid-template-columns: 1fr 92mm; column-gap: 4mm; align-items:center">
     <p class="mb0">Multiply or divide <b>every</b> part by the <b>same number</b>. The ratio stays the same, just like equivalent fractions.</p>
     <div class="fig">${eqvSvg}</div>
   </div>
@@ -211,10 +210,10 @@ const L1a = {
   </table>
 
   <div class="h2">Finding an unknown</div>
-  <p>Work out what one part was multiplied by. Then do the <b>same</b> to the other part.</p>
-  <div class="disp">${r('2:3')} = ${r('<i>a</i>:15')} &emsp;→&emsp; 3 × <b>5</b> = 15, so <i>a</i> = 2 × <b>5</b> = 10</div>
+  <p>Find two numbers in the same place. Divide to find what one was multiplied by. Then do the <b>same</b> to the other part.</p>
+  <div class="disp">${r('3:4')} = ${r('<i>a</i>:12')} &emsp;→&emsp; 12 ÷ 4 = <b>3</b>, so <i>a</i> = 3 × <b>3</b> = 9</div>
 
-  <div class="beige" style="margin:3mm 0 4mm"><span class="lbl">Hint</span><b>Finding the HCF.</b> Take the smaller number. Try its factors from biggest to smallest until one also divides into the other number. For ${r('12:18')}: does 12 go into 18? No. Does 6? Yes, so the HCF is 6.</div>
+  <div class="beige" style="margin:2mm 0 3mm"><span class="lbl">Hint</span><b>Finding the HCF.</b> Take the smallest number. Try its factors from biggest to smallest until one also divides into every other number. For ${r('12:18')}: does 12 go into 18? No. Does 6? Yes, so the HCF is 6.</div>
 
   ${checklist(['change a ratio to simplest form, to the form 1 : <i>a</i> and to the form <i>b</i> : 1.', 'use a ratio to find an unknown amount.'])}`,
 };
@@ -234,10 +233,11 @@ const L1b = {
       [`= ${r('2:3:6')}`, 'Only 1 divides into 2, 3 and 6.'],
     ])}
     ${sol('(c)', [
-      [r('4.8:1.6'), 'Decimals: multiply both parts by <b>10</b> first.'],
-      [`= ${r('48:16')}`, 'Now both parts are whole numbers. The HCF is <b>16</b>.'],
+      [r('4.8:1.6'), 'There are decimals. Make whole numbers first.'],
+      [`= ${r('4.8 × 10 : 1.6 × 10')}`, 'Multiply <b>both</b> parts by <b>10</b>.'],
+      [`= ${r('48:16')}`, 'The HCF of 48 and 16 is <b>16</b>.'],
       [`= ${r('48 ÷ 16 : 16 ÷ 16')}`, 'Divide both parts by 16.'],
-      [`= ${r('3:1')}`, 'Keep the 1. A ratio always has two parts.'],
+      [`= ${r('3:1')}`, `Keep the 1. Write ${r('3:1')}, not just 3.`],
     ])}`)}
 
   ${we('1.2', 'Three ways to write a ratio', `Consider the ratio ${r('15:12')}. Write it (a) in simplest form &ensp;(b) in the form ${r('1:<i>a</i>')} &ensp;(c) in the form ${r('<i>b</i>:1')}.`, `
@@ -256,29 +256,28 @@ const L1b = {
       [r('15:12'), 'To make the <b>second</b> part 1, divide both parts by the second number, 12.'],
       [`= ${r('15 ÷ 12 : 12 ÷ 12')}`, 'Use your calculator: 15 ÷ 12 = 1.25'],
       [`= ${r('1.25:1')}`, 'The second part is now 1.'],
-    ])}`, 'margin-top:4.5mm')}
+    ])}`, 'margin-top:3.5mm')}
 
   ${we('1.3', 'Finding an unknown', `Find the value of the pronumeral. &emsp;(a) ${r('2:5')} = ${r('<i>a</i>:20')} &emsp;(b) ${r('3:4')} = ${r('15:<i>b</i>')}`, `
-    <div class="grid2" style="column-gap:6mm; --wc: 29mm">
-      <div>${sol('(a)', [
-        [`${r('2:5')} = ${r('<i>a</i>:20')}`, 'Look at the two parts you know: 5 and 20.'],
-        ['5 × <b>4</b> = 20', '5 was multiplied by 4.'],
-        ['<i>a</i> = 2 × <b>4</b>', 'Do the same to the other part.'],
-        ['<i>a</i> = 8', ''],
-      ])}</div>
-      <div>${sol('(b)', [
-        [`${r('3:4')} = ${r('15:<i>b</i>')}`, 'The two parts you know: 3 and 15.'],
-        ['3 × <b>5</b> = 15', '3 was multiplied by 5.'],
-        ['<i>b</i> = 4 × <b>5</b>', 'Do the same to the other part.'],
-        ['<i>b</i> = 20', ''],
-      ])}</div>
-    </div>`, 'margin-top:4.5mm')}`,
+    <div class="sol-head"><span></span><span>Working</span><span>Why</span></div>
+    ${sol('(a)', [
+      [`${r('2:5')} = ${r('<i>a</i>:20')}`, 'Find two numbers in the same place: 5 and 20 are both <b>second</b> parts.'],
+      ['20 ÷ 5 = <b>4</b>', 'Divide to find what 5 was multiplied by (5 × 4 = 20).'],
+      ['<i>a</i> = 2 × <b>4</b>', 'Do the same to the first part.'],
+      ['<i>a</i> = 8', `Check: ${r('8:20')} simplifies to ${r('2:5')}.`],
+    ])}
+    ${sol('(b)', [
+      [`${r('3:4')} = ${r('15:<i>b</i>')}`, '3 and 15 are both <b>first</b> parts.'],
+      ['15 ÷ 3 = <b>5</b>', 'Divide to find what 3 was multiplied by (3 × 5 = 15).'],
+      ['<i>b</i> = 4 × <b>5</b>', 'Do the same to the second part.'],
+      ['<i>b</i> = 20', `Check: ${r('15:20')} simplifies to ${r('3:4')}.`],
+    ])}`, 'margin-top:3.5mm')}`,
 };
 
 const L1c = {
   html: `
   ${we('1.4', 'Using a ratio to find an amount', `The ratio of boys to girls in a class is ${r('3:4')}. There are 12 girls. How many boys are in the class?`, `
-    <div class="grid2" style="grid-template-columns: 1fr 58mm; column-gap: 5mm; align-items:center; --wc: 42mm">
+    <div class="grid2" style="grid-template-columns: 1fr 58mm; column-gap: 5mm; align-items:center; --wc: 38mm">
       <div>
         <div class="sol-head" style="grid-template-columns: var(--wc) 1fr"><span>Working</span><span>Why</span></div>
         <div style="margin-top:1.5mm">${steps([
@@ -296,33 +295,33 @@ const L1c = {
 
   ${sec('Multiple choice', 'circle the best answer')}
   <div class="grid2">
-    <div>${mc(1, `Which ratio is equivalent to ${r('2:5')}?`, [r('4:10'), r('5:2'), r('4:7'), r('2:10')], { see: 'Key idea', h: 13 })}</div>
-    <div>${mc(2, `What is ${r('15:20')} in simplest form?`, [r('5:4'), r('3:4'), r('1:5'), r('30:40')], { see: 'Example 1.1', h: 13 })}</div>
+    <div>${mc(1, `Which ratio is equivalent to ${r('2:5')}?`, [r('4:10'), r('5:2'), r('4:7'), r('2:10')], { see: 'Equivalent ratios', h: 12 })}</div>
+    <div>${mc(2, `What is ${r('15:20')} in simplest form?`, [r('5:4'), r('3:4'), r('1:5'), r('30:40')], { see: 'Example 1.1', h: 12 })}</div>
   </div>
-  ${mc(3, `The ratio of adults to children in a park is ${r('5:9')}. There are 630 children in the park. How many adults are in the park?`, ['70', '126', '280', '350'], { see: 'Example 1.4', h: 17 })}
+  ${mc(3, `The ratio of adults to children in a park is ${r('5:9')}. There are 630 children in the park. How many adults are in the park? <span class="hint">Hint: 9 parts = 630 children.</span>`, ['70', '126', '280', '350'], { see: 'Example 1.4', h: 18, row: true })}
 
   ${sec('Short answer', 'show your working in the box')}
-  ${q(1, 'Write each ratio in simplest form.', { see: 'Example 1.1', parts: [r('500:100'), r('20:30'), r('28:7'), r('12:9'), r('10:15:30'), r('4.8:1.6')], h: 32 })}
-  ${q(2, `Consider the ratio ${r('10:4')}. Write it`, { see: 'Example 1.2', parts: ['in simplest form', `in the form ${r('1:<i>a</i>')}`, `in the form ${r('<i>b</i>:1')}`], h: 26 })}`,
+  ${q(1, 'Write each ratio in simplest form. <span class="hint">Hint: find the HCF first.</span>', { see: 'Example 1.1', parts: [r('20:30'), r('6:9:12'), r('1.5:2.5')], h: 34, split: true })}
+  ${q(2, `Consider the ratio ${r('10:4')}. Write it`, { see: 'Example 1.2', parts: ['in simplest form', `in the form ${r('1:<i>a</i>')}`, `in the form ${r('<i>b</i>:1')}`], h: 28, split: true })}`,
 };
 
 const L1d = {
   html: `
-  ${q(3, 'Find the value of the pronumeral.', { see: 'Example 1.3', parts: [`${r('2:3')} = ${r('<i>a</i>:15')}`, `${r('4:3')} = ${r('<i>a</i>:24')}`, `${r('3:5')} = ${r('12:<i>b</i>')}`], h: 34 })}
+  ${q(3, 'Find the value of the pronumeral. <span class="hint">Hint: divide to find what was multiplied.</span>', { see: 'Example 1.3', parts: [`${r('2:3')} = ${r('<i>a</i>:15')}`, `${r('4:3')} = ${r('<i>a</i>:24')}`, `${r('3:5')} = ${r('12:<i>b</i>')}`], h: 36, split: true })}
   <div class="grid2 qpair">
-    <div>${q(4, `Gabriel mixes sand and cement in the ratio ${r('5:2')}. He uses 4 buckets of cement. How many buckets of sand should he use? <span class="hint">Hint: 2 parts = 4 buckets.</span>`, { see: 'Example 1.4', h: 46 })}</div>
-    <div>${q(5, `The ratio of Victoria’s height to Willow’s height is ${r('8:7')}. Victoria is 176 cm tall. How tall is Willow? <span class="hint">Hint: 8 parts = 176 cm.</span>`, { see: 'Example 1.4', h: 46 })}</div>
+    <div>${q(4, `Gabriel mixes sand and cement in the ratio ${r('5:2')}. He uses 4 buckets of cement. How many buckets of sand should he use? <span class="hint">Hint: 2 parts = 4&nbsp;buckets.</span>`, { see: 'Example 1.4', h: 46 })}</div>
+    <div>${q(5, `The ratio of Victoria’s height to Willow’s height is ${r('8:7')}. Victoria is 176 cm tall. How tall is Willow? <span class="hint">Hint: 8 parts = 176&nbsp;cm.</span>`, { see: 'Example 1.4', h: 46 })}</div>
   </div>
 
   ${sec('Extended response', 'answer each part in order')}
-  ${q(1, `A fruit punch recipe mixes orange juice and lemonade in the ratio ${r('3:5')}.`, { see: 'Examples 1.1 and 1.4', cols: 1, parts: [
+  ${q(1, `A fruit punch recipe mixes orange juice and lemonade in the ratio ${r('3:5')}.`, { see: 'Key idea and Example 1.4', cols: 1, parts: [
     'Write the ratio of <b>lemonade</b> to <b>orange juice</b>.',
     'Mia uses 600 mL of orange juice. How many millilitres is <b>one part</b>?',
     'How much lemonade does Mia need?',
-    'How much punch does Mia make altogether? Give your answer in litres.',
-  ], h: 78 })}
+    'How much punch does Mia make altogether? <span class="hint">Hint: add the orange juice and the lemonade.</span>',
+  ], h: 72 })}
 
-  <div class="beige" style="margin-top:1mm"><span class="lbl">Finished?</span>Check your answers in the Answers section at the back. Then go back to the checklist on page ${LESSONS[0].start} and rate yourself.</div>`,
+  <div class="beige" style="margin-top:1mm"><span class="lbl">Finished?</span>Check your answers in the Answers section at the back. Then go back to the checklist on page&nbsp;${LESSONS[0].start} and rate yourself.</div>`,
 };
 
 // ---------------------------------------------------------------- answers
@@ -333,15 +332,15 @@ const answers = {
     <h4>Lesson 1 &nbsp;Ratios</h4>
     <h5>Multiple choice</h5>
     <p><b>1</b> A &emsp;<b>2</b> B</p>
-    <p><b>3</b> D &nbsp;(1 part = 630 ÷ 9 = 70, adults = 5 × 70 = 350)</p>
+    <p><b>3</b> D &nbsp;(<span class="nw">1 part = 630 ÷ 9 = 70,</span> <span class="nw">adults = 5 × 70 = 350)</span></p>
     <h5>Short answer</h5>
-    <p><b>1</b> (a) ${r('5:1')} &nbsp;(b) ${r('2:3')} &nbsp;(c) ${r('4:1')} &nbsp;(d) ${r('4:3')} &nbsp;(e) ${r('2:3:6')} &nbsp;(f) ${r('3:1')}</p>
-    <p><b>2</b> (a) ${r('5:2')} &nbsp;(b) ${r('1:0.4')} &nbsp;(c) ${r('2.5:1')}</p>
-    <p><b>3</b> (a) <i>a</i> = 10 &nbsp;(b) <i>a</i> = 32 &nbsp;(c) <i>b</i> = 20</p>
-    <p><b>4</b> 1 part = 4 ÷ 2 = 2, sand = 5 × 2 = 10 buckets</p>
-    <p><b>5</b> 1 part = 176 ÷ 8 = 22 cm, Willow = 7 × 22 = 154 cm</p>
+    <p><b>1</b> <span class="nw">(a) ${r('2:3')}</span>&nbsp; <span class="nw">(b) ${r('2:3:4')}</span>&nbsp; <span class="nw">(c) ${r('3:5')}</span></p>
+    <p><b>2</b> <span class="nw">(a) ${r('5:2')}</span>&nbsp; <span class="nw">(b) ${r('1:0.4')}</span>&nbsp; <span class="nw">(c) ${r('2.5:1')}</span></p>
+    <p><b>3</b> <span class="nw">(a) <i>a</i> = 10</span>&nbsp; <span class="nw">(b) <i>a</i> = 32</span>&nbsp; <span class="nw">(c) <i>b</i> = 20</span></p>
+    <p><b>4</b> <span class="nw">1 part = 4 ÷ 2 = 2,</span> <span class="nw">sand = 5 × 2 = 10 buckets</span></p>
+    <p><b>5</b> <span class="nw">1 part = 176 ÷ 8 = 22 cm,</span> <span class="nw">Willow = 7 × 22 = 154 cm</span></p>
     <h5>Extended response</h5>
-    <p><b>1</b> (a) ${r('5:3')} &nbsp;(b) 600 ÷ 3 = 200 mL &nbsp;(c) 5 × 200 = 1000 mL (1 L) &nbsp;(d) 600 + 1000 = 1600 mL = 1.6 L</p>
+    <p><b>1</b> (a) ${r('5:3')}<br>(b) <span class="nw">600 ÷ 3 = 200 mL</span><br>(c) <span class="nw">5 × 200 = 1000 mL</span> (1 L)<br>(d) <span class="nw">600 + 1000 = 1600 mL</span> (1.6 L)</p>
   </div>`,
 };
 

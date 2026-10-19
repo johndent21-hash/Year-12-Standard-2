@@ -52,21 +52,24 @@ export const we = (id, topic, question, body, style = '') => `
     <div class="bd"><div class="q">${question}</div>${body}</div>
   </div>`;
 
-// A question with its number, an optional "see example" pointer and a plain working box
-export const q = (n, text, { see, h = 0, parts, cols = 3 } = {}) => `
+// A question with its number, an optional "see example" pointer and a plain working box.
+// split: true gives the box one labelled column per part.
+export const q = (n, text, { see, h = 0, parts, cols = 3, split = false } = {}) => `
   <div class="qn">
     <div class="n">${n}</div>
     <div>${text}${see ? `<span class="see">${see}</span>` : ''}
       ${parts ? `<div class="parts${cols === 2 ? ' two' : cols === 1 ? ' one' : ''}">${parts.map((p, i) => `<div>(${String.fromCharCode(97 + i)}) ${p}</div>`).join('')}</div>` : ''}
     </div>
   </div>
-  ${h ? `<div class="work" style="height:${h}mm"></div>` : ''}`;
+  ${h ? (split && parts
+    ? `<div class="work split" style="height:${h}mm; --n:${parts.length}">${parts.map((_, i) => `<div><span>(${String.fromCharCode(97 + i)})</span></div>`).join('')}</div>`
+    : `<div class="work" style="height:${h}mm"></div>`) : ''}`;
 
-export const mc = (n, text, opts, { see, h = 14 } = {}) => `
+export const mc = (n, text, opts, { see, h = 14, row = false } = {}) => `
   <div class="qn">
     <div class="n">${n}</div>
     <div>${text}${see ? `<span class="see">${see}</span>` : ''}
-      <div class="mc-opts">${opts.map((o, i) => `<div><b>${'ABCD'[i]}.</b>${o}</div>`).join('')}</div>
+      <div class="mc-opts${row ? ' row' : ''}">${opts.map((o, i) => `<div><b>${'ABCD'[i]}.</b>${o}</div>`).join('')}</div>
     </div>
   </div>
   ${h ? `<div class="work" style="height:${h}mm"></div>` : ''}`;
