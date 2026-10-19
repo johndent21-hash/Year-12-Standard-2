@@ -58,7 +58,7 @@ export const q = (n, text, { see, h = 0, parts, cols = 3, split = false } = {}) 
   <div class="qn">
     <div class="n">${n}</div>
     <div>${text}${see ? `<span class="see">${see}</span>` : ''}
-      ${parts ? `<div class="parts${cols === 2 ? ' two' : cols === 1 ? ' one' : ''}">${parts.map((p, i) => `<div>(${String.fromCharCode(97 + i)}) ${p}</div>`).join('')}</div>` : ''}
+      ${parts ? `<div class="parts${split && h ? ' split' : cols === 2 ? ' two' : cols === 1 ? ' one' : ''}" style="--n:${parts.length}">${parts.map((p, i) => `<div>(${String.fromCharCode(97 + i)}) ${p}</div>`).join('')}</div>` : ''}
     </div>
   </div>
   ${h ? (split && parts

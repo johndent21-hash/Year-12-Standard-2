@@ -104,7 +104,7 @@ const about = {
       <ul class="bars-list" style="margin-top:3mm">
         <li><b>Key idea</b>: the idea in plain words, with the <i>I can</i> statements from the textbook checklist.</li>
         <li class="b"><b>Worked examples</b>: every example is fully worked, with the reason for each line next to it. The answer is in a <span class="nw" style="border:.3mm solid var(--blue);background:var(--blue-pale);border-radius:1mm;padding:0 1.2mm">blue box</span>.</li>
-        <li class="b"><b>Your turn</b>: <b>multiple choice</b>, <b>short answer</b> and <b>extended response</b> questions, like the textbook review. Each question tells you which example to look at.</li>
+        <li class="b"><b>Your turn</b>: <b>multiple choice</b>, <b>short answer</b> and <b>extended response</b> questions, like the textbook review. Each question tells you where to look.</li>
       </ul>
       <p class="mb0">The workbook ends with a <b>chapter review</b> set out the same way, and answers to every question.</p>
     </div>
@@ -166,7 +166,7 @@ const keyIdeas = {
   ${shortBanner('Key ideas <small>Chapter 1 at a glance</small>')}
   <p style="margin-bottom:2mm">A simplified version of the textbook’s <i>Key ideas and chapter summary</i>. Each key idea has its own lesson.</p>
   <table class="ki">
-    <tr><td></td><td></td><td></td><td class="x" style="padding-top:1.2mm;padding-bottom:1.2mm;font:400 7.5pt/1 Poppins;color:#7a1f4e;letter-spacing:.05em">EXAMPLE</td></tr>
+    <tr><td></td><td></td><td></td><td class="x" style="padding-top:1.2mm;padding-bottom:1.2mm;font:500 7.5pt/1 Poppins;color:#7a1f4e;letter-spacing:.05em">EXAMPLE</td></tr>
     ${kiRows.map(([n, k, e, x]) => `<tr><td class="n">${n}</td><td class="k">${k}</td><td class="e">${e}</td><td class="x">${x}</td></tr>`).join('')}
   </table>`,
 };
@@ -211,7 +211,7 @@ const L1a = {
 
   <div class="h2">Finding an unknown</div>
   <p>Find two numbers in the same place. Divide to find what one was multiplied by. Then do the <b>same</b> to the other part.</p>
-  <div class="disp">${r('3:4')} = ${r('<i>a</i>:12')} &emsp;→&emsp; 12 ÷ 4 = <b>3</b>, so <i>a</i> = 3 × <b>3</b> = 9</div>
+  <div class="disp">${r('3:4')} = ${r('<i>a</i>:20')} &emsp;→&emsp; 20 ÷ 4 = <b>5</b>, so <i>a</i> = 3 × <b>5</b> = 15</div>
 
   <div class="beige" style="margin:2mm 0 3mm"><span class="lbl">Hint</span><b>Finding the HCF.</b> Take the smallest number. Try its factors from biggest to smallest until one also divides into every other number. For ${r('12:18')}: does 12 go into 18? No. Does 6? Yes, so the HCF is 6.</div>
 
@@ -291,17 +291,17 @@ const L1c = {
       <div class="fig">${barModelSvg}<div class="cap">each box is one part = 3 students</div></div>
     </div>`)}
 
-  <div style="margin-top:5mm">${bar('Your turn 1', 'Stuck? Each question shows the worked example to look at.')}</div>
+  <div style="margin-top:5mm">${bar('Your turn 1', 'Stuck? Each question shows you where to look.')}</div>
 
   ${sec('Multiple choice', 'circle the best answer')}
-  <div class="grid2">
-    <div>${mc(1, `Which ratio is equivalent to ${r('2:5')}?`, [r('4:10'), r('5:2'), r('4:7'), r('2:10')], { see: 'Equivalent ratios', h: 12 })}</div>
+  <div class="grid2 qpair">
+    <div>${mc(1, `Which is equivalent to ${r('2:5')}?`, [r('4:10'), r('5:2'), r('4:7'), r('2:10')], { see: 'Equivalent ratios', h: 12 })}</div>
     <div>${mc(2, `What is ${r('15:20')} in simplest form?`, [r('5:4'), r('3:4'), r('1:5'), r('30:40')], { see: 'Example 1.1', h: 12 })}</div>
   </div>
-  ${mc(3, `The ratio of adults to children in a park is ${r('5:9')}. There are 630 children in the park. How many adults are in the park? <span class="hint">Hint: 9 parts = 630 children.</span>`, ['70', '126', '280', '350'], { see: 'Example 1.4', h: 18, row: true })}
+  ${mc(3, `The ratio of adults to children in a park is ${r('5:9')}. There are 630 children in the park. How many adults are in the park? <span class="hint">Hint: <span class="nw">9 parts = 630 children</span>.</span>`, ['70', '126', '280', '350'], { see: 'Example 1.4', h: 14, row: true })}
 
   ${sec('Short answer', 'show your working in the box')}
-  ${q(1, 'Write each ratio in simplest form. <span class="hint">Hint: find the HCF first.</span>', { see: 'Example 1.1', parts: [r('20:30'), r('6:9:12'), r('1.5:2.5')], h: 34, split: true })}
+  ${q(1, 'Write each ratio in simplest form. <span class="hint">Hint: find the HCF first.</span>', { see: 'Example 1.1', parts: [r('20:30'), r('6:9:12'), r('1.5:2.5')], h: 42, split: true })}
   ${q(2, `Consider the ratio ${r('10:4')}. Write it`, { see: 'Example 1.2', parts: ['in simplest form', `in the form ${r('1:<i>a</i>')}`, `in the form ${r('<i>b</i>:1')}`], h: 28, split: true })}`,
 };
 
@@ -309,8 +309,8 @@ const L1d = {
   html: `
   ${q(3, 'Find the value of the pronumeral. <span class="hint">Hint: divide to find what was multiplied.</span>', { see: 'Example 1.3', parts: [`${r('2:3')} = ${r('<i>a</i>:15')}`, `${r('4:3')} = ${r('<i>a</i>:24')}`, `${r('3:5')} = ${r('12:<i>b</i>')}`], h: 36, split: true })}
   <div class="grid2 qpair">
-    <div>${q(4, `Gabriel mixes sand and cement in the ratio ${r('5:2')}. He uses 4 buckets of cement. How many buckets of sand should he use? <span class="hint">Hint: 2 parts = 4&nbsp;buckets.</span>`, { see: 'Example 1.4', h: 46 })}</div>
-    <div>${q(5, `The ratio of Victoria’s height to Willow’s height is ${r('8:7')}. Victoria is 176 cm tall. How tall is Willow? <span class="hint">Hint: 8 parts = 176&nbsp;cm.</span>`, { see: 'Example 1.4', h: 46 })}</div>
+    <div>${q(4, `Gabriel mixes sand and cement in the ratio ${r('5:2')}. He uses 4 buckets of cement. How many buckets of sand should he use? <span class="hint nw">Hint: 2 parts = 4 buckets.</span>`, { see: 'Example 1.4', h: 46 })}</div>
+    <div>${q(5, `The ratio of Victoria’s height to Willow’s height is ${r('8:7')}. Victoria is 176 cm tall. How tall is Willow? <span class="hint">Hint: <span class="nw">8 parts = 176 cm</span>.</span>`, { see: 'Example 1.4', h: 46 })}</div>
   </div>
 
   ${sec('Extended response', 'answer each part in order')}
@@ -340,7 +340,7 @@ const answers = {
     <p><b>4</b> <span class="nw">1 part = 4 ÷ 2 = 2,</span> <span class="nw">sand = 5 × 2 = 10 buckets</span></p>
     <p><b>5</b> <span class="nw">1 part = 176 ÷ 8 = 22 cm,</span> <span class="nw">Willow = 7 × 22 = 154 cm</span></p>
     <h5>Extended response</h5>
-    <p><b>1</b> (a) ${r('5:3')}<br>(b) <span class="nw">600 ÷ 3 = 200 mL</span><br>(c) <span class="nw">5 × 200 = 1000 mL</span> (1 L)<br>(d) <span class="nw">600 + 1000 = 1600 mL</span> (1.6 L)</p>
+    <p><b>1</b> (a) ${r('5:3')}<br>(b) <span class="nw">600 ÷ 3 = 200 mL</span><br>(c) <span class="nw">5 × 200 = 1000 mL</span><br>(d) <span class="nw">600 + 1000 = 1600 mL</span></p>
   </div>`,
 };
 
