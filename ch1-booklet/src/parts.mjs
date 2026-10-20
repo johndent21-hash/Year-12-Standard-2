@@ -23,11 +23,10 @@ export const box = (hd, bd, style = '') =>
 // Success criteria from the textbook's chapter checklist, with a self-rating
 export const checklist = (items) => `
   <div class="pale">
-    <div class="caps">Checklist · success criteria</div>
+    <div class="caps" style="display:flex; justify-content:space-between; align-items:baseline; white-space:nowrap">Checklist · success criteria<span class="ratekey" style="margin:0">Finished? Check the answers, then rate yourself: <span class="rate"><i></i><i></i><i></i></span> not yet / getting there / got it</span></div>
     <div class="checklist">
       ${items.map((t) => `<div class="ic"><i>I can</i> ${t}</div><div class="rate"><i></i><i></i><i></i></div>`).join('')}
     </div>
-    <div class="ratekey">Rate yourself when you finish the lesson: <span class="rate"><i></i><i></i><i></i></span> not yet / getting there / got it</div>
   </div>`;
 
 // The answer goes in a blue box; a leading "= " stays outside so the equals signs line up
@@ -52,27 +51,33 @@ export const we = (id, topic, question, body, style = '') => `
     <div class="bd"><div class="q">${question}</div>${body}</div>
   </div>`;
 
-// A question with its number, an optional "see example" pointer and a plain working box.
-// split: true gives the box one labelled column per part.
-export const q = (n, text, { see, h = 0, parts, cols = 3, split = false } = {}) => `
+// Plain working box. split: one labelled column per part. fill: grows to the bottom of a qpair/grid3 row.
+const work = (h, n, { split, fill }) => {
+  const size = fill ? `min-height:${h}mm` : `height:${h}mm`;
+  return split
+    ? `<div class="work split${fill ? ' fill' : ''}" style="${size}; --n:${n}">${Array.from({ length: n }, (_, i) => `<div><span>(${String.fromCharCode(97 + i)})</span></div>`).join('')}</div>`
+    : `<div class="work${fill ? ' fill' : ''}" style="${size}"></div>`;
+};
+
+// A question with its number, an optional "see example" pointer and a working box.
+// Parts sit in columns that line up with a split box, unless cols: 1 lists them down the page.
+export const q = (n, text, { see, h = 0, parts, cols = 3, split = false, fill = false } = {}) => `
   <div class="qn">
     <div class="n">${n}</div>
     <div>${text}${see ? `<span class="see">${see}</span>` : ''}
-      ${parts ? `<div class="parts${split && h ? ' split' : cols === 2 ? ' two' : cols === 1 ? ' one' : ''}" style="--n:${parts.length}">${parts.map((p, i) => `<div>(${String.fromCharCode(97 + i)}) ${p}</div>`).join('')}</div>` : ''}
+      ${parts ? `<div class="parts${split && h && cols !== 1 ? ' split' : cols === 2 ? ' two' : cols === 1 ? ' one' : ''}" style="--n:${parts.length}">${parts.map((p, i) => `<div>(${String.fromCharCode(97 + i)}) ${p}</div>`).join('')}</div>` : ''}
     </div>
   </div>
-  ${h ? (split && parts
-    ? `<div class="work split" style="height:${h}mm; --n:${parts.length}">${parts.map((_, i) => `<div><span>(${String.fromCharCode(97 + i)})</span></div>`).join('')}</div>`
-    : `<div class="work" style="height:${h}mm"></div>`) : ''}`;
+  ${h ? work(h, parts ? parts.length : 1, { split: split && parts, fill }) : ''}`;
 
-export const mc = (n, text, opts, { see, h = 14, row = false } = {}) => `
+export const mc = (n, text, opts, { see, h = 14, row = false, fill = false } = {}) => `
   <div class="qn">
     <div class="n">${n}</div>
     <div>${text}${see ? `<span class="see">${see}</span>` : ''}
       <div class="mc-opts${row ? ' row' : ''}">${opts.map((o, i) => `<div><b>${'ABCD'[i]}.</b>${o}</div>`).join('')}</div>
     </div>
   </div>
-  ${h ? `<div class="work" style="height:${h}mm"></div>` : ''}`;
+  ${h ? work(h, 1, { fill }) : ''}`;
 
 export const sec = (a, c, rule = false) =>
   `<div class="sec${rule ? ' rule' : ''}"><span class="a">${a}</span><span class="c">${c}</span></div>`;

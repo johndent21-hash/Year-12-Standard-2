@@ -18,7 +18,7 @@ export const LESSONS = [
   { n: 12, title: 'Fuel consumption', sec: '1J' },
 ];
 const FIRST_LESSON_PAGE = 4;
-const PAGES_PER_LESSON = 4;
+const PAGES_PER_LESSON = 3;
 LESSONS.forEach((l, i) => (l.start = FIRST_LESSON_PAGE + i * PAGES_PER_LESSON));
 const REVIEW_PAGE = FIRST_LESSON_PAGE + LESSONS.length * PAGES_PER_LESSON;
 const ANSWERS_PAGE = REVIEW_PAGE + 5;
@@ -31,7 +31,7 @@ const bucket = (x, fill) => `
     <rect x="-0.3" y="3.6" width="18.6" height="3" rx="1" fill="${fill}" stroke="#3d3d3d" stroke-width="0.9"/>
   </g>`;
 const bucketsSvg = `
-  <svg width="62mm" viewBox="0 0 172 44" font-family="Poppins" font-weight="300">
+  <svg width="46mm" viewBox="0 0 172 44" font-family="Poppins" font-weight="300">
     ${[0, 1, 2, 3, 4].map((i) => bucket(2 + i * 22, '#d8d2b4')).join('')}
     ${[0, 1].map((i) => bucket(122 + i * 22, '#9fb9da')).join('')}
     <text x="56" y="41" font-size="8" fill="#555" text-anchor="middle">sand</text>
@@ -176,50 +176,43 @@ const L1a = {
   html: `
   ${banner({ num: '1', title: 'Ratios', sub: 'Key idea: Ratio • Textbook 1A • MST-12-S2-05' })}
   ${box('Key idea &nbsp;Ratio', `
-    <div class="grid2" style="grid-template-columns: 1fr 64mm; column-gap: 5mm; align-items:center">
-      <div>
-        <p>A <b>ratio</b> compares two or more amounts of the <b>same kind</b>, in a set order.</p>
-        <ul class="dots mb0">
-          <li>A builder mixes 5 buckets of sand with 2 buckets of cement. The ratio of sand to cement is ${r('5:2')}, read “5 to 2”.</li>
-          <li><b>Order matters.</b> The ratio of cement to sand is ${r('2:5')}.</li>
-          <li>A ratio has <b>no units</b>. If the units are different, change them to the same unit first.</li>
-        </ul>
-      </div>
-      <div class="fig">${bucketsSvg}<div class="cap">sand : cement = 5 : 2</div></div>
-    </div>`)}
+    <div class="fig" style="float:right; width:48mm; margin:0 0 1mm 4mm">${bucketsSvg}<div class="cap">sand : cement = 5 : 2</div></div>
+    <p class="mb0">A <b>ratio</b> compares two or more amounts of the <b>same kind</b>, in a set order.</p>
+    <ul class="dots mb0" style="margin-top:1mm">
+      <li>5 buckets of sand to 2 buckets of cement is ${r('5:2')}, read “5 to 2”.</li>
+      <li><b>Order matters:</b> cement to sand is ${r('2:5')}. A ratio has <b>no units</b>.</li>
+      <li><b>Equivalent ratios:</b> multiply or divide <b>every</b> part by the same number. ${r('5:2')} = ${r('10:4')} = ${r('15:6')}</li>
+    </ul>`)}
 
-  <div class="h2">Equivalent ratios</div>
-  <div class="grid2" style="grid-template-columns: 1fr 92mm; column-gap: 4mm; align-items:center">
-    <p class="mb0">Multiply or divide <b>every</b> part by the <b>same number</b>. The ratio stays the same, just like equivalent fractions.</p>
-    <div class="fig">${eqvSvg}</div>
+  <div class="grid2" style="margin-top:3mm; column-gap:6mm; grid-template-columns: 1fr 80mm">
+    <div>
+      <div class="h2">Simplest form</div>
+      <p class="mb0">Divide every part by the <b>highest common factor</b> (HCF).</p>
+      <ul class="dots mb0" style="margin-top:1mm">
+        <li><b>Finding the HCF:</b> try the factors of the smallest number, biggest first, until one divides into every part.</li>
+        <li><b>Decimals?</b> Multiply every part by 10 first.</li>
+        <li><b>Different units?</b> Make them the same: 40 cm : 2 m = ${r('40:200')} = ${r('1:5')}.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="h2">Three ways to write a ratio</div>
+      <table class="t compact">
+        <tr><th>Form</th><th>How</th><th>${r('8:10')}</th></tr>
+        <tr><td><b>Simplest</b></td><td>÷ by the HCF</td><td>${r('4:5')}</td></tr>
+        <tr><td><b>${r('1:<i>a</i>')}</b></td><td>÷ by the <b>first</b> number</td><td>${r('1:1.25')}</td></tr>
+        <tr><td><b>${r('<i>b</i>:1')}</b></td><td>÷ by the <b>second</b> number</td><td>${r('0.8:1')}</td></tr>
+      </table>
+    </div>
   </div>
 
-  <div class="h2">Simplest form</div>
-  <p>Divide every part by the <b>highest common factor</b> (HCF): the biggest number that divides into every part. A ratio is in simplest form when the parts are whole numbers and only 1 divides into all of them.</p>
-  <ul class="dots">
-    <li><b>Decimals?</b> Multiply every part by 10 (or 100) first to make whole numbers.</li>
-    <li><b>Different units?</b> Change to the same unit first, e.g. 40 cm : 2 m = 40 cm : 200 cm = ${r('40:200')} = ${r('1:5')}.</li>
-  </ul>
-
-  <div class="h2">Three ways to write a ratio</div>
-  <table class="t" style="margin-bottom:1mm">
-    <tr><th style="width:30%">Form</th><th style="width:44%">How to get it</th><th>Example: ${r('8:10')}</th></tr>
-    <tr><td><b>Simplest form</b></td><td>Divide every part by the HCF.</td><td>${r('8:10')} = ${r('4:5')}</td></tr>
-    <tr><td><b>The form ${r('1:<i>a</i>')}</b></td><td>Divide every part by the <b>first</b> number.</td><td>${r('8 ÷ 8 : 10 ÷ 8')} = ${r('1:1.25')}</td></tr>
-    <tr><td><b>The form ${r('<i>b</i>:1')}</b></td><td>Divide every part by the <b>second</b> number.</td><td>${r('8 ÷ 10 : 10 ÷ 10')} = ${r('0.8:1')}</td></tr>
-  </table>
-
   <div class="h2">Finding an unknown</div>
-  <p>Find two numbers in the same place. Divide to find what one was multiplied by. Then do the <b>same</b> to the other part.</p>
-  <div class="disp">${r('3:4')} = ${r('<i>a</i>:20')} &emsp;→&emsp; 20 ÷ 4 = <b>5</b>, so <i>a</i> = 3 × <b>5</b> = 15</div>
+  <div class="grid2" style="grid-template-columns: 1fr auto; column-gap: 6mm; align-items: baseline">
+    <p class="mb0">Find two numbers in the same place. Divide to find what one was multiplied by. Do the <b>same</b> to the other part.</p>
+    <div class="nw">${r('3:4')} = ${r('<i>a</i>:20')} &ensp;→&ensp; 20 ÷ 4 = <b>5</b>, so <i>a</i> = 3 × <b>5</b> = 15</div>
+  </div>
 
-  <div class="beige" style="margin:2mm 0 3mm"><span class="lbl">Hint</span><b>Finding the HCF.</b> Take the smallest number. Try its factors from biggest to smallest until one also divides into every other number. For ${r('12:18')}: does 12 go into 18? No. Does 6? Yes, so the HCF is 6.</div>
+  <div style="margin-top:3mm">${checklist(['change a ratio to simplest form, to the form 1 : <i>a</i> and to the form <i>b</i> : 1.', 'use a ratio to find an unknown amount.'])}</div>
 
-  ${checklist(['change a ratio to simplest form, to the form 1 : <i>a</i> and to the form <i>b</i> : 1.', 'use a ratio to find an unknown amount.'])}`,
-};
-
-const L1b = {
-  html: `
   ${we('1.1', 'Simplest form', `Write each ratio in simplest form. &emsp;(a) ${r('12:18')} &emsp;(b) ${r('10:15:30')} &emsp;(c) ${r('4.8:1.6')}`, `
     <div class="sol-head"><span></span><span>Working</span><span>Why</span></div>
     ${sol('(a)', [
@@ -238,28 +231,24 @@ const L1b = {
       [`= ${r('48:16')}`, 'The HCF of 48 and 16 is <b>16</b>.'],
       [`= ${r('48 ÷ 16 : 16 ÷ 16')}`, 'Divide both parts by 16.'],
       [`= ${r('3:1')}`, `Keep the 1. Write ${r('3:1')}, not just 3.`],
-    ])}`)}
+    ])}`, 'margin-top:3mm')}`,
+};
 
-  ${we('1.2', 'Three ways to write a ratio', `Consider the ratio ${r('15:12')}. Write it (a) in simplest form &ensp;(b) in the form ${r('1:<i>a</i>')} &ensp;(c) in the form ${r('<i>b</i>:1')}.`, `
-    <div class="sol-head"><span></span><span>Working</span><span>Why</span></div>
+const L1b = {
+  html: `
+  ${we('1.2', 'The forms 1 : a and b : 1', `Write the ratio ${r('15:12')} &ensp;(a) in the form ${r('1:<i>a</i>')} &ensp;(b) in the form ${r('<i>b</i>:1')}.`, `
     ${sol('(a)', [
-      [r('15:12'), 'The HCF of 15 and 12 is <b>3</b>.'],
-      [`= ${r('15 ÷ 3 : 12 ÷ 3')}`, 'Divide both parts by 3.'],
-      [`= ${r('5:4')}`, ''],
-    ])}
-    ${sol('(b)', [
       [r('15:12'), 'To make the <b>first</b> part 1, divide both parts by the first number, 15.'],
       [`= ${r('15 ÷ 15 : 12 ÷ 15')}`, 'Use your calculator: 12 ÷ 15 = 0.8'],
       [`= ${r('1:0.8')}`, 'The first part is now 1.'],
     ])}
-    ${sol('(c)', [
+    ${sol('(b)', [
       [r('15:12'), 'To make the <b>second</b> part 1, divide both parts by the second number, 12.'],
       [`= ${r('15 ÷ 12 : 12 ÷ 12')}`, 'Use your calculator: 15 ÷ 12 = 1.25'],
       [`= ${r('1.25:1')}`, 'The second part is now 1.'],
-    ])}`, 'margin-top:3.5mm')}
+    ])}`)}
 
   ${we('1.3', 'Finding an unknown', `Find the value of the pronumeral. &emsp;(a) ${r('2:5')} = ${r('<i>a</i>:20')} &emsp;(b) ${r('3:4')} = ${r('15:<i>b</i>')}`, `
-    <div class="sol-head"><span></span><span>Working</span><span>Why</span></div>
     ${sol('(a)', [
       [`${r('2:5')} = ${r('<i>a</i>:20')}`, 'Find two numbers in the same place: 5 and 20 are both <b>second</b> parts.'],
       ['20 ÷ 5 = <b>4</b>', 'Divide to find what 5 was multiplied by (5 × 4 = 20).'],
@@ -271,16 +260,12 @@ const L1b = {
       ['15 ÷ 3 = <b>5</b>', 'Divide to find what 3 was multiplied by (3 × 5 = 15).'],
       ['<i>b</i> = 4 × <b>5</b>', 'Do the same to the second part.'],
       ['<i>b</i> = 20', `Check: ${r('15:20')} simplifies to ${r('3:4')}.`],
-    ])}`, 'margin-top:3.5mm')}`,
-};
+    ])}`, 'margin-top:3mm')}
 
-const L1c = {
-  html: `
   ${we('1.4', 'Using a ratio to find an amount', `The ratio of boys to girls in a class is ${r('3:4')}. There are 12 girls. How many boys are in the class?`, `
     <div class="grid2" style="grid-template-columns: 1fr 58mm; column-gap: 5mm; align-items:center; --wc: 38mm">
       <div>
-        <div class="sol-head" style="grid-template-columns: var(--wc) 1fr"><span>Working</span><span>Why</span></div>
-        <div style="margin-top:1.5mm">${steps([
+        <div>${steps([
           [`boys : girls = ${r('3:4')}`, 'Write the ratio with labels so you know which part is which.'],
           ['4 parts = 12 girls', 'Girls are the <b>second</b> part, so 4 parts = 12.'],
           ['1 part = 12 ÷ 4 = 3', 'Find <b>one part</b> first.'],
@@ -289,28 +274,27 @@ const L1c = {
         ])}</div>
       </div>
       <div class="fig">${barModelSvg}<div class="cap">each box is one part = 3 students</div></div>
-    </div>`)}
+    </div>`, 'margin-top:3mm')}
 
-  <div style="margin-top:5mm">${bar('Your turn 1', 'Stuck? Each question shows you where to look.')}</div>
+  <div style="margin-top:3.5mm">${bar('Your turn 1', 'Stuck? Each question shows you where to look.')}</div>
 
   ${sec('Multiple choice', 'circle the best answer')}
-  <div class="grid2 qpair">
-    <div>${mc(1, `Which is equivalent to ${r('2:5')}?`, [r('4:10'), r('5:2'), r('4:7'), r('2:10')], { see: 'Equivalent ratios', h: 12 })}</div>
-    <div>${mc(2, `What is ${r('15:20')} in simplest form?`, [r('5:4'), r('3:4'), r('1:5'), r('30:40')], { see: 'Example 1.1', h: 12 })}</div>
-  </div>
-  ${mc(3, `The ratio of adults to children in a park is ${r('5:9')}. There are 630 children in the park. How many adults are in the park? <span class="hint">Hint: <span class="nw">9 parts = 630 children</span>.</span>`, ['70', '126', '280', '350'], { see: 'Example 1.4', h: 14, row: true })}
-
-  ${sec('Short answer', 'show your working in the box')}
-  ${q(1, 'Write each ratio in simplest form. <span class="hint">Hint: find the HCF first.</span>', { see: 'Example 1.1', parts: [r('20:30'), r('6:9:12'), r('1.5:2.5')], h: 42, split: true })}
-  ${q(2, `Consider the ratio ${r('10:4')}. Write it`, { see: 'Example 1.2', parts: ['in simplest form', `in the form ${r('1:<i>a</i>')}`, `in the form ${r('<i>b</i>:1')}`], h: 28, split: true })}`,
+  <div class="grid3 qpair">
+    <div>${mc(1, `Which is equivalent to ${r('2:5')}?`, [r('4:10'), r('5:2'), r('4:7'), r('2:10')], { see: 'Key idea', h: 18, fill: true })}</div>
+    <div>${mc(2, `What is ${r('15:20')} in simplest form?`, [r('5:4'), r('3:4'), r('1:5'), r('30:40')], { see: 'Example 1.1', h: 18, fill: true })}</div>
+    <div>${mc(3, `Adults : children = ${r('5:9')}. There are 630 children. How many adults? <span class="hint nw">Hint: 9 parts = 630.</span>`, ['70', '126', '280', '350'], { see: 'Example 1.4', h: 18, fill: true })}</div>
+  </div>`,
 };
 
-const L1d = {
+const L1c = {
   html: `
-  ${q(3, 'Find the value of the pronumeral. <span class="hint">Hint: divide to find what was multiplied.</span>', { see: 'Example 1.3', parts: [`${r('2:3')} = ${r('<i>a</i>:15')}`, `${r('4:3')} = ${r('<i>a</i>:24')}`, `${r('3:5')} = ${r('12:<i>b</i>')}`], h: 36, split: true })}
+  ${sec('Short answer', 'show your working in the box')}
+  ${q(1, 'Write each ratio in simplest form. <span class="hint">Hint: find the HCF first.</span>', { see: 'Example 1.1', parts: [r('20:30'), r('6:9:12'), r('1.5:2.5')], h: 37, split: true })}
+  ${q(2, `Consider the ratio ${r('10:4')}. Write it`, { see: 'Examples 1.1 and 1.2', parts: ['in simplest form', `in the form ${r('1:<i>a</i>')}`, `in the form ${r('<i>b</i>:1')}`], h: 24, split: true })}
+  ${q(3, 'Find the value of the pronumeral. <span class="hint">Hint: divide to find what was multiplied.</span>', { see: 'Example 1.3', parts: [`${r('2:3')} = ${r('<i>a</i>:15')}`, `${r('4:3')} = ${r('<i>a</i>:24')}`, `${r('3:5')} = ${r('12:<i>b</i>')}`], h: 30, split: true })}
   <div class="grid2 qpair">
-    <div>${q(4, `Gabriel mixes sand and cement in the ratio ${r('5:2')}. He uses 4 buckets of cement. How many buckets of sand should he use? <span class="hint nw">Hint: 2 parts = 4 buckets.</span>`, { see: 'Example 1.4', h: 46 })}</div>
-    <div>${q(5, `The ratio of Victoria’s height to Willow’s height is ${r('8:7')}. Victoria is 176 cm tall. How tall is Willow? <span class="hint">Hint: <span class="nw">8 parts = 176 cm</span>.</span>`, { see: 'Example 1.4', h: 46 })}</div>
+    <div>${q(4, `Gabriel mixes sand and cement in the ratio ${r('5:2')}. He uses 4 buckets of cement. How many buckets of sand should he use? <span class="hint nw">Hint: 2 parts = 4 buckets.</span>`, { see: 'Example 1.4', h: 26, fill: true })}</div>
+    <div>${q(5, `The ratio of Victoria’s height to Willow’s height is ${r('8:7')}. Victoria is 176 cm tall. How tall is Willow? <span class="hint">Hint: <span class="nw">8 parts = 176 cm</span>.</span>`, { see: 'Example 1.4', h: 26, fill: true })}</div>
   </div>
 
   ${sec('Extended response', 'answer each part in order')}
@@ -319,9 +303,7 @@ const L1d = {
     'Mia uses 600 mL of orange juice. How many millilitres is <b>one part</b>?',
     'How much lemonade does Mia need?',
     'How much punch does Mia make altogether? <span class="hint">Hint: add the orange juice and the lemonade.</span>',
-  ], h: 72 })}
-
-  <div class="beige" style="margin-top:1mm"><span class="lbl">Finished?</span>Check your answers in the Answers section at the back. Then go back to the checklist on page&nbsp;${LESSONS[0].start} and rate yourself.</div>`,
+  ], h: 26, split: true })}`,
 };
 
 // ---------------------------------------------------------------- answers
@@ -344,4 +326,4 @@ const answers = {
   </div>`,
 };
 
-export const PAGES = [cover, about, keyIdeas, L1a, L1b, L1c, L1d, answers];
+export const PAGES = [cover, about, keyIdeas, L1a, L1b, L1c, answers];
