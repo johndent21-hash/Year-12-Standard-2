@@ -1,2 +1,4 @@
 preview/
+build/
 src/booklet.html
+src/_*.html

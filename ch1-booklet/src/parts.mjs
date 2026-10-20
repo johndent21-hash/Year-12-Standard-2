@@ -6,8 +6,8 @@ export const r = (s) => `<span class="nw">${s.replace(/\s*:\s*/g, '&#8239;:&#823
 // Stacked fraction
 export const frac = (n, d) => `<span class="frac"><span>${n}</span><span>${d}</span></span>`;
 
-export const banner = ({ num, title, sub, alt = false }) => `
-  <div class="banner${alt ? ' alt' : ''}">
+export const banner = ({ num, title, sub, alt = false, cls = '' }) => `
+  <div class="banner${alt ? ' alt' : ''}${cls ? ' ' + cls : ''}">
     <div class="tag">
       <div class="num">${num}</div>
       <div><div class="title">${title}</div><div class="sub">${sub}</div></div>
