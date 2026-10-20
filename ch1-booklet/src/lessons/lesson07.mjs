@@ -240,7 +240,7 @@ const p2 = {
 
   ${sec('Multiple choice', 'circle the best answer')}
   <div class="grid3 qpair">
-    <div>${mc(1, `How many litres are in 3&nbsp;${m3}?`, ['30 L', '300 L', '3000 L', '0.003 L'], { see: 'Key idea', h: 15.5 })}</div>
+    <div>${mc(1, `How many litres are in 3&nbsp;${m3}?`, ['30 L', '300 L', '3000 L', '0.003 L'], { see: 'Changing units', h: 15.5 })}</div>
     <div>${mc(2, 'What is 25&nbsp;mm in metres?', ['2.5 m', '0.025 m', '0.25 m', '25&#8239;000 m'], { see: 'Example 7.3', h: 15.5 })}</div>
     <div>${mc(3, `A pond has a surface area of 40&nbsp;${m2} and is 0.5&nbsp;m deep. Find its volume. <span class="hint nw">Hint: area × depth.</span>`, [`80 ${m3}`, `40.5 ${m3}`, `20&#8239;000 ${m3}`, `20 ${m3}`], { see: 'Example 7.1', h: 15.5 })}</div>
   </div>`,
@@ -250,7 +250,7 @@ const p3 = {
   cls: 'l07',
   html: `
   ${sec('Short answer', 'show your working in the box')}
-  ${q(1, 'Change each one to the unit shown. <span class="hint">Hint: × 1000 or ÷ 1000.</span>', { see: 'Key idea', parts: [`5 ${m3} to litres`, `2500 L to ${m3}`, '40 mm to metres'], h: 22, split: true })}
+  ${q(1, 'Change each one to the unit shown. <span class="hint">Hint: × 1000 or ÷ 1000.</span>', { see: 'Changing units', parts: [`5 ${m3} to litres`, `2500 L to ${m3}`, '40 mm to metres'], h: 22, split: true })}
   ${q(2, 'A pool is 8&nbsp;m long and 5&nbsp;m wide. The water is 2&nbsp;m deep everywhere. <span class="hint">Hint: <span class="nw">area = 8 × 5</span>.</span>', { see: 'Example 7.1', parts: ['Find the area of the surface.', 'Find the volume of water.', 'Change the volume to litres.'], h: 27, split: true })}
   ${q(3, 'A body of water has one curved side. Its measurements are <span class="nw"><i>h</i> = 6 m</span> (the textbook writes <span class="nw"><i>b</i> = 6 m</span>), <span class="nw"><i>d<sub>f</sub></i> = 20 m</span> and <span class="nw"><i>d<sub>l</sub></i> = 40 m</span>. The water is 2.5&nbsp;m deep everywhere. <span class="hint">Hint: the depth is 2.5 m, not <i>h</i>.</span>', { see: 'Example 7.2', parts: ['Use the trapezoidal rule to find the area.', 'Find the volume of water, in m<sup>3</sup>.'], h: 29, split: true })}
   ${q(4, 'Now 9&nbsp;mm of rain falls on the same area as in Question 3.', { see: 'Example 7.3', parts: ['Change 9 mm to metres.', 'Find the volume in m<sup>3</sup>.', 'Change it to litres.'], h: 27, split: true })}

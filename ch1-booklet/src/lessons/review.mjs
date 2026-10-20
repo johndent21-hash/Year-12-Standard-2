@@ -127,7 +127,7 @@ const p3 = {
   cls: 'rev',
   html: `
   <div class="grid2 qpair">
-    <div>${q(4, `Write each scale as a ratio in the form ${r('1:<i>x</i>')}.`, { see: 'Lesson 4', parts: ['1 cm to 5 m', '1 mm to 8 cm', '1 m to 2 km'], h: 32, split: true })}</div>
+    <div>${q(4, `Write each scale as a ratio in the form ${r('1:<i>x</i>')}.`, { see: 'Lesson 4', parts: ['1&nbsp;cm to 5&nbsp;m', '1&nbsp;mm to 8&nbsp;cm', '1&nbsp;m to 2&nbsp;km'], h: 32, split: true })}</div>
     <div>${q(5, 'A map has the scale <span class="nw">1 cm = 4 km</span>. Two towns are 65&nbsp;mm apart on the map. How far apart are they in real life, in&nbsp;km?', { see: 'Lesson 4', h: 32 })}</div>
   </div>
   <div class="grid2 planq">

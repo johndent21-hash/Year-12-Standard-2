@@ -2,7 +2,7 @@
 // Fails if any page's content runs into the footer or past the right margin.
 //
 // Usage:
-//   node build.mjs [out.pdf] [--png]            whole booklet (default out: booklet.pdf, previews in preview/)
+//   node build.mjs [out.pdf] [--png]            whole booklet (default out: the workbook PDF in the repo root, previews in preview/)
 //   node build.mjs --lesson 5 [--png]           one lesson, numbered as in the booklet -> build/lesson05/
 //   node build.mjs --review [--png]             the chapter review -> build/review/
 //   node build.mjs --answers [--png]            the answers pages -> build/answers/
@@ -37,7 +37,8 @@ if (lessonArg) {
   pages = SECTIONS.answers; firstNum = ANSWERS_PAGE; name = 'answers';
 }
 if (name !== 'booklet') { outDir = join(here, 'build', name); previewDir = outDir; }
-const out = resolve(args.find((a) => a.endsWith('.pdf')) || join(outDir, `${name}.pdf`));
+const defaultOut = name === 'booklet' ? join(here, '..', 'Chapter 1 Ratios and Rates Workbook.pdf') : join(outDir, `${name}.pdf`);
+const out = resolve(args.find((a) => a.endsWith('.pdf')) || defaultOut);
 mkdirSync(dirname(out), { recursive: true });
 
 const html = `<!doctype html>
