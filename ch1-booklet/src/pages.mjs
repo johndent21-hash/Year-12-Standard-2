@@ -191,7 +191,7 @@ const L1a = {
       <ul class="dots mb0" style="margin-top:1mm">
         <li><b>Finding the HCF:</b> try the factors of the smallest number, biggest first, until one divides into every part.</li>
         <li><b>Decimals?</b> Multiply every part by 10 first.</li>
-        <li><b>Different units?</b> Make them the same: 40 cm : 2 m = ${r('40:200')} = ${r('1:5')}.</li>
+        <li><b>Different units?</b> Make them the same: <span class="nw">40 cm&#8239;:&#8239;2 m = ${r('40:200')} = ${r('1:5')}</span>.</li>
       </ul>
     </div>
     <div>
@@ -236,7 +236,8 @@ const L1a = {
 
 const L1b = {
   html: `
-  ${we('1.2', 'The forms 1 : a and b : 1', `Write the ratio ${r('15:12')} &ensp;(a) in the form ${r('1:<i>a</i>')} &ensp;(b) in the form ${r('<i>b</i>:1')}.`, `
+  ${we('1.2', 'The forms 1 : <i>a</i> and <i>b</i> : 1', `Write the ratio ${r('15:12')} &ensp;(a) in the form ${r('1:<i>a</i>')} &ensp;(b) in the form ${r('<i>b</i>:1')}.`, `
+    <div class="sol-head"><span></span><span>Working</span><span>Why</span></div>
     ${sol('(a)', [
       [r('15:12'), 'To make the <b>first</b> part 1, divide both parts by the first number, 15.'],
       [`= ${r('15 ÷ 15 : 12 ÷ 15')}`, 'Use your calculator: 12 ÷ 15 = 0.8'],
@@ -249,6 +250,7 @@ const L1b = {
     ])}`)}
 
   ${we('1.3', 'Finding an unknown', `Find the value of the pronumeral. &emsp;(a) ${r('2:5')} = ${r('<i>a</i>:20')} &emsp;(b) ${r('3:4')} = ${r('15:<i>b</i>')}`, `
+    <div class="sol-head"><span></span><span>Working</span><span>Why</span></div>
     ${sol('(a)', [
       [`${r('2:5')} = ${r('<i>a</i>:20')}`, 'Find two numbers in the same place: 5 and 20 are both <b>second</b> parts.'],
       ['20 ÷ 5 = <b>4</b>', 'Divide to find what 5 was multiplied by (5 × 4 = 20).'],
@@ -260,12 +262,13 @@ const L1b = {
       ['15 ÷ 3 = <b>5</b>', 'Divide to find what 3 was multiplied by (3 × 5 = 15).'],
       ['<i>b</i> = 4 × <b>5</b>', 'Do the same to the second part.'],
       ['<i>b</i> = 20', `Check: ${r('15:20')} simplifies to ${r('3:4')}.`],
-    ])}`, 'margin-top:3mm')}
+    ])}`, 'margin-top:2.5mm')}
 
   ${we('1.4', 'Using a ratio to find an amount', `The ratio of boys to girls in a class is ${r('3:4')}. There are 12 girls. How many boys are in the class?`, `
     <div class="grid2" style="grid-template-columns: 1fr 58mm; column-gap: 5mm; align-items:center; --wc: 38mm">
       <div>
-        <div>${steps([
+        <div class="sol-head" style="grid-template-columns: var(--wc) 1fr"><span>Working</span><span>Why</span></div>
+        <div style="margin-top:1mm">${steps([
           [`boys : girls = ${r('3:4')}`, 'Write the ratio with labels so you know which part is which.'],
           ['4 parts = 12 girls', 'Girls are the <b>second</b> part, so 4 parts = 12.'],
           ['1 part = 12 ÷ 4 = 3', 'Find <b>one part</b> first.'],
@@ -274,27 +277,27 @@ const L1b = {
         ])}</div>
       </div>
       <div class="fig">${barModelSvg}<div class="cap">each box is one part = 3 students</div></div>
-    </div>`, 'margin-top:3mm')}
+    </div>`, 'margin-top:2.5mm')}
 
-  <div style="margin-top:3.5mm">${bar('Your turn 1', 'Stuck? Each question shows you where to look.')}</div>
+  <div style="margin-top:3mm">${bar('Your turn 1', 'Stuck? Each question shows you where to look.')}</div>
 
   ${sec('Multiple choice', 'circle the best answer')}
   <div class="grid3 qpair">
-    <div>${mc(1, `Which is equivalent to ${r('2:5')}?`, [r('4:10'), r('5:2'), r('4:7'), r('2:10')], { see: 'Key idea', h: 18, fill: true })}</div>
-    <div>${mc(2, `What is ${r('15:20')} in simplest form?`, [r('5:4'), r('3:4'), r('1:5'), r('30:40')], { see: 'Example 1.1', h: 18, fill: true })}</div>
-    <div>${mc(3, `Adults : children = ${r('5:9')}. There are 630 children. How many adults? <span class="hint nw">Hint: 9 parts = 630.</span>`, ['70', '126', '280', '350'], { see: 'Example 1.4', h: 18, fill: true })}</div>
+    <div>${mc(1, `Which is equivalent to ${r('2:5')}?`, [r('4:10'), r('5:2'), r('4:7'), r('2:10')], { see: 'Key idea', h: 15.5 })}</div>
+    <div>${mc(2, `What is ${r('15:20')} in <span class="nw">simplest form?</span>`, [r('5:4'), r('3:4'), r('1:5'), r('30:40')], { see: 'Example 1.1', h: 15.5 })}</div>
+    <div>${mc(3, `Adults : children = ${r('5:9')}. There are 630 children. <span class="nw">How many adults?</span> <span class="hint nw">Hint: 9 parts = 630.</span>`, ['70', '126', '280', '350'], { see: 'Example 1.4', h: 15.5, row: true })}</div>
   </div>`,
 };
 
 const L1c = {
   html: `
   ${sec('Short answer', 'show your working in the box')}
-  ${q(1, 'Write each ratio in simplest form. <span class="hint">Hint: find the HCF first.</span>', { see: 'Example 1.1', parts: [r('20:30'), r('6:9:12'), r('1.5:2.5')], h: 37, split: true })}
+  ${q(1, 'Write each ratio in simplest form. <span class="hint">Hint: find the HCF. Decimals? Multiply by 10 first.</span>', { see: 'Example 1.1', parts: [r('20:30'), r('6:9:12'), r('1.5:2.5')], h: 35, split: true })}
   ${q(2, `Consider the ratio ${r('10:4')}. Write it`, { see: 'Examples 1.1 and 1.2', parts: ['in simplest form', `in the form ${r('1:<i>a</i>')}`, `in the form ${r('<i>b</i>:1')}`], h: 24, split: true })}
-  ${q(3, 'Find the value of the pronumeral. <span class="hint">Hint: divide to find what was multiplied.</span>', { see: 'Example 1.3', parts: [`${r('2:3')} = ${r('<i>a</i>:15')}`, `${r('4:3')} = ${r('<i>a</i>:24')}`, `${r('3:5')} = ${r('12:<i>b</i>')}`], h: 30, split: true })}
+  ${q(3, 'Find the value of the pronumeral. <span class="hint">Hint: divide to find what was multiplied.</span>', { see: 'Example 1.3', parts: [`${r('2:3')} = ${r('<i>a</i>:15')}`, `${r('4:3')} = ${r('<i>a</i>:24')}`, `${r('3:5')} = ${r('12:<i>b</i>')}`], h: 28, split: true })}
   <div class="grid2 qpair">
-    <div>${q(4, `Gabriel mixes sand and cement in the ratio ${r('5:2')}. He uses 4 buckets of cement. How many buckets of sand should he use? <span class="hint nw">Hint: 2 parts = 4 buckets.</span>`, { see: 'Example 1.4', h: 26, fill: true })}</div>
-    <div>${q(5, `The ratio of Victoria’s height to Willow’s height is ${r('8:7')}. Victoria is 176 cm tall. How tall is Willow? <span class="hint">Hint: <span class="nw">8 parts = 176 cm</span>.</span>`, { see: 'Example 1.4', h: 26, fill: true })}</div>
+    <div>${q(4, `Gabriel mixes sand and cement in the ratio ${r('5:2')}. He uses 4 buckets of cement. How many buckets of sand? <span class="hint">Hint: <span class="nw">2 parts = 4 buckets</span>.</span>`, { see: 'Example 1.4', h: 30 })}</div>
+    <div>${q(5, `The ratio of Victoria’s height to Willow’s height is ${r('8:7')}. Victoria is 176 cm tall. How tall is Willow? <span class="hint">Hint: <span class="nw">8 parts = 176 cm</span>.</span>`, { see: 'Example 1.4', h: 30 })}</div>
   </div>
 
   ${sec('Extended response', 'answer each part in order')}
@@ -303,7 +306,7 @@ const L1c = {
     'Mia uses 600 mL of orange juice. How many millilitres is <b>one part</b>?',
     'How much lemonade does Mia need?',
     'How much punch does Mia make altogether? <span class="hint">Hint: add the orange juice and the lemonade.</span>',
-  ], h: 26, split: true })}`,
+  ], h: 24, split: true })}`,
 };
 
 // ---------------------------------------------------------------- answers
