@@ -83,7 +83,7 @@ def d_mc4():
     s = Svg(300, 170, -2, adj + 3, -3, opp + 2, pad=10)
     s.poly([A, B, C]); s.right_angle(B, 180, 90)
     s.arc(A, 34, 0, 35); s.text(A, "35°", dx=52, dy=-8, size=12)
-    side_label(s, C, A, "20", -12); side_label(s, A, B, "<tspan font-style='italic'>x</tspan>", 14)
+    side_label(s, C, A, "20", -12); side_label(s, A, B, "<tspan font-style='italic'>x</tspan>", -16)
     return s.render()
 
 def d_mc7():
