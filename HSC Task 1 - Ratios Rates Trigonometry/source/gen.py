@@ -3,6 +3,8 @@ import base64, math, sys
 from math import sin, cos, tan, radians as rad, degrees as deg
 
 OUT = sys.argv[1]
+SOL = len(sys.argv) > 3 and sys.argv[3] == "solutions"
+from solutions import LINE_SOLS, MC_ANS, MC_NOTES
 LOGO = base64.b64encode(open(sys.argv[2], 'rb').read()).decode()
 FOOT_L = "Mathematics Standard 2 HSC Task 1"
 FOOT_R = "Kingscliff High School"
@@ -219,8 +221,12 @@ def d_oil():
     return f'<table class="oil"><tr>{cells}</tr></table>'
 
 # ---------------------------------------------------------------- html pieces
+_li = [0]
 def lines(n, indent=0, gap=36):
-    return f'<div class="lines" style="margin-left:{indent}mm">' + "".join(f'<div class="ln" style="height:{gap}px"></div>' for _ in range(n)) + '</div>'
+    sol = LINE_SOLS[_li[0]]; _li[0] += 1
+    assert len(sol) <= n, (sol, n)
+    txt = (sol + [""] * n)[:n] if SOL else [""] * n
+    return f'<div class="lines" style="margin-left:{indent}mm">' + "".join(f'<div class="ln" style="height:{gap}px"><span class="sol">{t}</span></div>' for t in txt) + '</div>'
 
 def box(h_mm, w_mm=95):
     return f'<div class="drawbox" style="height:{h_mm}mm;width:{w_mm}mm"></div>'
@@ -233,8 +239,14 @@ def part(letter, body, marks=None):
     m = f'<div class="mk">{marks}</div>' if marks is not None else ''
     return f'<div class="part"><div class="pl">{letter}.</div><div class="pb">{body}</div>{m}</div>'
 
+_oi = [0]
+MC_ORDER = [1, 2, 3, 4, 6, 7, 8, 9, 10]
+def mc_note(qn):
+    return f'<div class="mcnote">{MC_NOTES[qn]} &nbsp;<b>Answer: {MC_ANS[qn]}</b></div>' if SOL else ''
 def opts(*o):
-    return '<div class="opts">' + "".join(f'<div><span class="ol">{"ABCD"[i]}.</span> {x}</div>' for i, x in enumerate(o)) + '</div>'
+    qn = MC_ORDER[_oi[0]]; _oi[0] += 1
+    a = "ABCD".index(MC_ANS[qn]) if SOL else -1
+    return '<div class="opts">' + "".join(f'<div><span class="ol{" ring" if i == a else ""}">{"ABCD"[i]}.</span> {x}</div>' for i, x in enumerate(o)) + '</div>' + mc_note(qn)
 
 page_no = [0]
 def page(content, footer=True):
@@ -258,7 +270,12 @@ body { margin:0; font-family: "Liberation Serif", "Times New Roman", serif; font
 .pb { flex:1; }
 .opts { margin: 3mm 0 0 8mm; line-height: 2.0; }
 .ol { display:inline-block; width:7mm; }
-.lines .ln { border-bottom: 1px solid #888; }
+.lines .ln { border-bottom: 1px solid #888; position:relative; }
+.sol { position:absolute; left:2mm; bottom:2px; color:#c00000; font-family:"Liberation Sans",Arial,sans-serif; font-size:11pt; white-space:nowrap; }
+.mcnote { color:#c00000; font-family:"Liberation Sans",Arial,sans-serif; font-size:10.5pt; margin: 1mm 0 0 8mm; }
+.ring { color:#c00000; font-weight:bold; border:1.6px solid #c00000; border-radius:50%; width:6mm !important; text-align:center; margin-right:1mm; }
+.oval.r { background:#c00000; border-color:#c00000; }
+.solbanner { color:#c00000; font-family:"Liberation Sans",Arial,sans-serif; font-weight:bold; }
 .drawbox { border:1.2px solid #000; margin: 3mm auto; }
 .fig { text-align:center; margin: 3mm 0; }
 .sechead { margin-bottom: 6mm; }
@@ -295,14 +312,14 @@ cover = f'''
 <div class="cover">
  <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-top:6mm">
   <img src="data:image/jpeg;base64,{LOGO}" style="width:62mm; margin-left:10mm">
-  <div style="margin-right:20mm"><div class="namebox">NAME:</div><div class="namebox">TEACHER:</div></div>
+  <div style="margin-right:20mm"><div class="namebox">NAME:{' <span class="solbanner">WORKED SOLUTIONS</span>' if SOL else ''}</div><div class="namebox">TEACHER:</div></div>
  </div>
  <div style="display:flex; align-items:center; margin: 14mm 0 0 25mm;" class="sans">
   <div style="font-size:24pt; font-weight:bold; padding-right:3mm">2026</div>
   <div style="border-left:1.5px solid #000; padding: 4mm 0 10mm 2mm; font-size:12pt; line-height:1.3">YEAR 12<br>HSC TASK 1</div>
  </div>
  <h1>Mathematics Standard 2</h1>
- <div class="sans" style="font-size:11pt; margin:-10mm 0 4mm 0; color:#333">Ratios and rates &nbsp;•&nbsp; Trigonometry</div>
+ <div class="sans" style="font-size:11pt; margin:-10mm 0 4mm 0; color:#333">Ratios and rates &nbsp;•&nbsp; Trigonometry{' &nbsp;•&nbsp; <span class="solbanner">WORKED SOLUTIONS – TEACHER COPY</span>' if SOL else ''}</div>
  <div class="cv-row"><div class="cv-l">General Instructions</div><div class="cv-r"><ul>
   <li>Working time – 1 hour</li><li>Write using black pen</li><li>Calculators approved by NESA may be used</li>
   <li>A reference sheet is provided at the back of this paper</li>
@@ -327,7 +344,7 @@ mc = '''<h3 style="text-align:center; font-size:14pt; margin-top:4mm">Section I 
 <p>If you change your mind and have crossed out what you consider to be the correct answer, then indicate the correct answer by writing the word <b>correct</b> and drawing an arrow as follows.</p>
 <div class="mcs"><table><tr><td style="width:16%"></td><td style="width:16%"></td><td>A<span class="oval f"></span></td><td>B<span class="oval f"></span> <small style="font-size:8pt">&#8601; correct</small></td><td>C<span class="oval"></span></td><td>D<span class="oval"></span></td></tr></table></div>
 <div class="mcgrid">''' + "".join(
-    f'<div><span>{i}.</span><span>A <i class="oval"></i></span><span>B <i class="oval"></i></span><span>C <i class="oval"></i></span><span>D <i class="oval"></i></span></div>'
+    f'<div><span>{i}.</span>' + "".join(f'<span>{L} <i class="oval{" r" if SOL and MC_ANS[i] == L else ""}"></i></span>' for L in "ABCD") + '</div>'
     for i in range(1, 11)) + '</div>'
 pages.append(page(mc))
 
@@ -343,7 +360,7 @@ pages.append(page(s1head + Q1 + Q2 + Q3))
 Q4 = q(4, "Which expression gives the value of <i>x</i> in the triangle shown?" + f'<div class="fig">{d_mc4()}</div>' +
        opts("20 cos 35°", "20 sin 35°", "20 ÷ cos 35°", "20 tan 35°"))
 Q5 = q(5, "Olive oil is sold in four bottle sizes. Which bottle is the best value for money?" + d_oil() +
-       '<div style="margin-left:8mm">A. &nbsp;500 mL for $6.80 &nbsp;&nbsp; B. &nbsp;750 mL for $9.90 &nbsp;&nbsp; C. &nbsp;1 L for $13.50 &nbsp;&nbsp; D. &nbsp;2 L for $26.80</div>')
+       '<div style="margin-left:8mm">A. &nbsp;500 mL for $6.80 &nbsp;&nbsp; B. &nbsp;750 mL for $9.90 &nbsp;&nbsp; C. &nbsp;1 L for $13.50 &nbsp;&nbsp; D. &nbsp;2 L for $26.80</div>' + mc_note(5))
 Q6 = q(6, "Fisheries officers catch, tag and release 60 bream in Cudgen Creek. A week later they catch 50 bream, and 6 of these are tagged. What is the best estimate of the number of bream in the creek?" +
        opts("110", "300", "360", "500"))
 pages.append(page(Q4 + Q5 + Q6))
@@ -415,5 +432,6 @@ extra = '<table class="extra"><tr><td style="height:22mm; vertical-align:top; pa
 pages.append(page(extra))
 
 html = f'<!doctype html><html><head><meta charset="utf-8"><title>Year 12 Standard 2 HSC Task 1</title><style>{CSS}</style></head><body>{"".join(pages)}</body></html>'
+assert _li[0] == len(LINE_SOLS) and _oi[0] == 9
 open(OUT, 'w').write(html)
 print("pages:", page_no[0])
