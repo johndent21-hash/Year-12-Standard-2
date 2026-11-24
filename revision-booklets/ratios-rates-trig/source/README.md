@@ -8,3 +8,7 @@
 - `build.py`: writes `booklet.html`; `render.js` checks page overflow and prints `booklet.pdf` (Playwright/Chromium).
 
 Needs the TeX Gyre Pagella font (`apt-get install fonts-texgyre`). Build: `python3 build.py && node render.js`.
+
+## Help sheet
+
+`helpsheet.py` builds `helpsheet.html` (one trigonometry page, one ratios and rates page); `render_hs.js` checks fit and prints `helpsheet.pdf`. Build: `python3 helpsheet.py && node render_hs.js`.
