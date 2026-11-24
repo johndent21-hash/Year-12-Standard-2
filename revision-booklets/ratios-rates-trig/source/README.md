@@ -12,3 +12,7 @@ Needs the TeX Gyre Pagella font (`apt-get install fonts-texgyre`). Build: `pytho
 ## Help sheet
 
 `helpsheet.py` builds `helpsheet.html` (one trigonometry page, one ratios and rates page); `render_hs.js` checks fit and prints `helpsheet.pdf`. Build: `python3 helpsheet.py && node render_hs.js`.
+
+## Girls and boys versions
+
+`girl.py` (pastel, encouraging) and `boy.py` ("training block") reuse the same questions, diagrams, answers and help sheets. Build: `python3 girl.py && node render_v.js girl`, or `python3 boy.py && node render_v.js boy`.
