@@ -1,0 +1,6 @@
+node_modules/
+out/*.html
+out/*.png
+out/body.pdf
+out/front.pdf
+out/test_small.pdf

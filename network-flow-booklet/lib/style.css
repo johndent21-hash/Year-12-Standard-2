@@ -1,0 +1,136 @@
+/* Banora Point High School colours, taken from the school logo: navy, teal and gold. */
+:root {
+  --navy: #1c2d6b; --navy-d: #131f4d; --navy-50: #eef1f8; --navy-100: #dde3f1;
+  --teal: #1b7f7c; --teal-50: #e7f3f2; --teal-100: #cfe7e5;
+  --gold: #c99a2e; --gold-d: #8a6714; --gold-50: #fbf5e4; --gold-100: #f4e6bd;
+  --ink: #1d2130; --mute: #5b6275; --rule: #c9cedb;
+}
+@font-face { font-family: Lexend; font-weight: 400; src: url(FONT400) format('woff2'); }
+@font-face { font-family: Lexend; font-weight: 600; src: url(FONT600) format('woff2'); }
+@font-face { font-family: Lexend; font-weight: 700; src: url(FONT700) format('woff2'); }
+@page { size: A4; margin: 13mm 13mm 15mm 13mm; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; }
+body { font-family: Lexend, Arial, sans-serif; font-size: 9.6pt; line-height: 1.38; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+b, strong { font-weight: 600; color: var(--navy-d); }
+p { margin: 0 0 1.6mm; }
+ul { margin: 0; padding-left: 4.5mm; }
+li { margin: 0 0 0.6mm; }
+.v { font-weight: 600; }               /* vertex names in text */
+.e { font-weight: 600; white-space: nowrap; } /* edge names in text */
+.u { color: var(--mute); }
+.small { font-size: 8.4pt; color: var(--mute); }
+table.t { border-collapse: collapse; font-size: 9pt; margin: 1mm 0 2mm; }
+table.t th, table.t td { border: 0.3mm solid var(--rule); padding: 0.8mm 2.4mm; text-align: center; }
+table.t th { background: var(--navy-50); color: var(--navy-d); font-weight: 600; }
+table.t td.blank { min-width: 14mm; height: 6.5mm; }
+table.t.wide td { min-width: 12mm; }
+
+/* ---------- lesson header ---------- */
+.lesson { break-before: page; }
+.lh { display: flex; align-items: stretch; background: var(--navy); color: #fff; border-radius: 2.5mm; overflow: hidden; margin-bottom: 3mm; }
+.lnum { background: var(--gold); color: var(--navy-d); width: 21mm; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 22pt; font-weight: 700; line-height: 1; padding: 2mm 0; }
+.lnum span { font-size: 7.5pt; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1mm; }
+.ltitle { padding: 2.6mm 4mm 2.4mm; flex: 1; position: relative; }
+.ltitle::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1.3mm; background: linear-gradient(90deg, var(--teal) 0 60%, var(--gold) 60% 100%); }
+.lh h1 { margin: 0 0 1mm; font-size: 16pt; font-weight: 700; letter-spacing: -0.01em; }
+.lcontent { font-size: 7.6pt; color: #d5dcf0; line-height: 1.3; padding-bottom: 1.4mm; }
+.lcontent span { display: block; }
+.lcontent b { color: var(--gold-100); }
+.lcontent span::before { content: '▸ '; color: var(--gold); }
+
+.lisc { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; margin-bottom: 3mm; }
+.lisc > div { border: 0.35mm solid var(--teal-100); background: var(--teal-50); border-radius: 2mm; padding: 2mm 3mm; }
+.lisc h3 { margin: 0 0 1mm; font-size: 8.6pt; color: var(--teal); text-transform: uppercase; letter-spacing: 0.04em; }
+.lisc ul { font-size: 8.8pt; }
+ul.ticks { list-style: none; padding-left: 0; }
+ul.ticks li { padding-left: 5mm; position: relative; }
+ul.ticks li::before { content: ''; position: absolute; left: 0; top: 0.7mm; width: 2.8mm; height: 2.8mm; border: 0.35mm solid var(--teal); border-radius: 0.6mm; background: #fff; }
+
+.key { border-left: 1.6mm solid var(--gold); background: var(--gold-50); border-radius: 0 2mm 2mm 0; padding: 2.4mm 3.5mm 1.6mm; margin-bottom: 3mm; break-inside: avoid; }
+.keyh { font-weight: 700; color: var(--gold-d); text-transform: uppercase; letter-spacing: 0.05em; font-size: 8.6pt; margin-bottom: 1mm; }
+.key ul { margin-bottom: 1.4mm; }
+.kgrid { display: grid; grid-template-columns: 1fr auto; gap: 4mm; align-items: center; }
+.kfig { text-align: center; }
+.kfig .cap2, .xfig .cap2 { font-size: 7.6pt; color: var(--mute); }
+.steps { counter-reset: st; list-style: none; padding-left: 0; }
+.steps li { counter-increment: st; padding-left: 6.5mm; position: relative; margin-bottom: 1mm; }
+.steps li::before { content: counter(st); position: absolute; left: 0; top: 0.1mm; width: 4.4mm; height: 4.4mm; border-radius: 50%; background: var(--navy); color: #fff; font-size: 7.4pt; font-weight: 700; text-align: center; line-height: 4.4mm; }
+.note { border: 0.3mm dashed var(--gold); border-radius: 1.5mm; padding: 1.2mm 2.4mm; background: #fff; font-size: 8.8pt; margin: 1mm 0 1.4mm; }
+
+/* ---------- worked examples ---------- */
+.ex { background: var(--navy-50); border: 0.35mm solid var(--navy-100); border-radius: 2mm; padding: 2.4mm 3.5mm 2.6mm; margin-bottom: 3mm; break-inside: avoid; }
+.exh { break-after: avoid; }
+.exq, .exs { break-inside: avoid; }
+.exh { display: inline-block; background: var(--navy); color: #fff; font-weight: 600; font-size: 8.4pt; padding: 0.5mm 2.6mm; border-radius: 1mm; margin-bottom: 1.6mm; }
+.exq { margin-bottom: 1.8mm; }
+.xfig { text-align: center; margin: 1mm 0; }
+.exs { background: #fff; border-radius: 1.5mm; padding: 2mm 3mm 1.4mm; border-left: 1.2mm solid var(--teal); }
+.exsh { font-weight: 700; color: var(--teal); font-size: 8.4pt; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8mm; }
+.exs table.t { background: #fff; }
+.brk { break-before: page; }
+
+/* ---------- practice ---------- */
+.level { margin-top: 1mm; }
+.lvh { display: flex; align-items: center; gap: 2.4mm; border-bottom: 0.6mm solid var(--c); padding-bottom: 1mm; margin: 2mm 0 2.6mm; break-after: avoid; }
+.lvtag { background: var(--c); color: #fff; font-weight: 700; font-size: 8pt; padding: 0.6mm 2.4mm; border-radius: 1mm; text-transform: uppercase; letter-spacing: 0.04em; }
+.lvname { font-weight: 700; font-size: 12pt; color: var(--c); }
+.lvwho { margin-left: auto; font-size: 8pt; color: var(--mute); }
+.l1 { --c: var(--teal); --c50: var(--teal-50); }
+.l2 { --c: var(--navy); --c50: var(--navy-50); }
+.l3 { --c: var(--gold-d); --c50: var(--gold-50); }
+.q { display: flex; gap: 2.4mm; margin-bottom: 3.2mm; break-inside: avoid; }
+.q.split { break-inside: auto; }
+.qn { flex: none; width: 6mm; height: 6mm; border-radius: 50%; background: var(--c); color: #fff; font-weight: 700; font-size: 8.6pt; text-align: center; line-height: 6mm; }
+.qb { flex: 1; min-width: 0; }
+.qt { margin-bottom: 1mm; }
+.qfig { text-align: center; margin: 1mm 0 1.5mm; }
+.side { display: flex; gap: 4mm; align-items: flex-start; }
+.sfig { flex: none; }
+.sbody { flex: 1; min-width: 0; }
+.parts { margin-top: 0.5mm; }
+.part { display: flex; gap: 1.6mm; margin-bottom: 1.4mm; break-inside: avoid; }
+.pl { flex: none; width: 5mm; font-weight: 600; color: var(--c); }
+.pq { flex: 1; min-width: 0; }
+.pfig { text-align: center; margin: 1mm 0; }
+.aline { display: inline-block; width: 34mm; border-bottom: 0.3mm solid var(--rule); height: 4.2mm; vertical-align: bottom; margin-left: 2mm; }
+.qt .aline { width: 45mm; }
+.lines .ln { border-bottom: 0.3mm solid var(--rule); height: 7mm; }
+.wbox { border: 0.3mm solid var(--rule); border-radius: 1.5mm; margin-top: 1mm; background: #fff; }
+
+/* ---------- network diagrams ---------- */
+svg.net { display: inline-block; vertical-align: middle; overflow: visible; }
+svg.net .edge { fill: none; stroke: #3a4157; stroke-width: 1.5; }
+svg.net .edge.hi { stroke: var(--teal); stroke-width: 3; }
+svg.net .ahd { fill: #3a4157; }
+svg.net .ahd.hi { fill: var(--teal); }
+svg.net .vtx { fill: #fff; stroke: var(--navy); stroke-width: 1.6; }
+svg.net .vtx.st { fill: var(--navy); }
+svg.net .vl { font: 600 12px Lexend, Arial; text-anchor: middle; fill: var(--navy-d); }
+svg.net .vl.st { fill: #fff; }
+svg.net .cap { font: 400 11.5px Lexend, Arial; text-anchor: middle; fill: #222; }
+svg.net .capbg { fill: #fff; }
+svg.net .lett { font-weight: 700; fill: var(--teal); }
+svg.net .fbox { fill: var(--gold-100); stroke: var(--gold); stroke-width: 1; }
+svg.net .fbox.empty { fill: #fff; }
+svg.net .flow { font: 600 11px Lexend, Arial; text-anchor: middle; fill: var(--gold-d); }
+svg.net .satx { stroke: #b3261e; stroke-width: 2; }
+svg.net .cut { fill: none; stroke: #b3261e; stroke-width: 1.6; stroke-dasharray: 5 3.5; }
+svg.net .cutl { font: 700 11px Lexend, Arial; fill: #b3261e; text-anchor: middle; }
+svg.net .vnote { font: 400 9.5px Lexend, Arial; fill: var(--mute); text-anchor: middle; }
+.figrow { display: flex; justify-content: space-around; align-items: flex-end; gap: 3mm; flex-wrap: wrap; }
+.figrow figure { margin: 0; text-align: center; }
+.figrow figcaption { font-size: 8pt; color: var(--mute); }
+
+/* ---------- answers ---------- */
+.answers { break-before: page; }
+.answers > h1 { font-size: 16pt; color: var(--navy); margin: 0 0 1mm; }
+.answers .intro { font-size: 8.6pt; color: var(--mute); margin-bottom: 3mm; }
+.acols { column-count: 2; column-gap: 7mm; column-rule: 0.3mm solid var(--navy-100); }
+.ablock { break-inside: auto; margin-bottom: 3mm; }
+.ablock h3 { font-size: 9.4pt; color: #fff; background: var(--navy); padding: 0.8mm 2.4mm; border-radius: 1mm; margin: 0 0 1.4mm; break-after: avoid; }
+.ar { display: flex; gap: 2mm; font-size: 8.4pt; line-height: 1.32; padding: 0.5mm 0; border-bottom: 0.2mm solid #e6e9f0; break-inside: avoid; }
+.an { flex: none; width: 5mm; font-weight: 700; color: var(--teal); }
+.at b { color: var(--teal); }
+
+.mark { position: absolute; font-size: 1px; color: #fff; opacity: 0.01; }
